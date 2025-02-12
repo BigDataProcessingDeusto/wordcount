@@ -18,13 +18,17 @@ import org.apache.hadoop.io.NullWritable;
 
 public class WordCount {
     public static class WordCountMapper
-       extends Mapper<Object, Text, ?, ?> {
+       extends Mapper<Object, Text, Text, IntWritable> {
+
+        IntWritable one = new IntWritable(1);
 
         public void map(Object key, Text value, Context context
                    ) throws IOException, InterruptedException {
             
-	        // Insert your code here
-
+            String[] words = value.toString().split("\\W+");
+            for(String w : words) {
+                context.write(new Text(w), one);
+            }
         }
     }
 
