@@ -28,10 +28,6 @@ public class WordCount {
             while(matcher.find()) {
                 context.write(new Text(matcher.group(0)), new IntWritable(1));
             }
-            // String[] words = value.toString().split("\\w+");
-        //     for(String w : words) {
-        //         context.write(new Text(w), one);
-        //     }
         }
     }
 
